@@ -19,7 +19,6 @@ import {compileToFunctions} from "./compiler";
 
 let a = 'hahah'
 let name='张三'
-let template = `<div id="a" class='b' >hello {{name}}<span>world</span></div>`
-let template2 =`<div id="app" style="color:red">hello {{name}} <span>world</span></div>`
+let template = `<div id="app" class="demo">hello {{name}} <span>world</span></div>`
 // 编译原理template=>render
-const render = compileToFunctions(template2)
+const render = compileToFunctions(template)

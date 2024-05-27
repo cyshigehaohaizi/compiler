@@ -10972,17 +10972,13 @@
   function generate(ast, options) {
       var state = new CodegenState(options);
       // fix #11483, Root level <script> tags should not be rendered.
-      console.log(ast)
       var code = ast
           ? ast.tag === 'script'
               ? 'null'
               : genElement(ast, state)
           : '_c("div")';
-      console.log(code)// _c('div',{staticStyle:{"color":"red"},attrs:{"id":"app"}},[_v("hello "+_s(name)+" "),_c('span',[_v("world")])])
-     let mycode=`_c('div',{attrs:{id:"app",style:{"color":"red"}}},[_v("hello"+_s(name)),_c('span',undefined,[_v("world")])])`
-      console.log(mycode)
+      var mycode=`_c('div',{attrs:{id:"app",class:"demo"}},[_v("hello"+_s(name)),_c('span',undefined,[_v("world")])])`
       return {
-          // render: "with(this){return ".concat(code, "}"),
           render: "with(this){return ".concat(mycode, "}"),
           staticRenderFns: state.staticRenderFns
       };
@@ -11784,6 +11780,8 @@
   // Here we just export a default compiler using the default parts.
   var createCompiler = createCompilerCreator(function baseCompile(template, options) {
       var ast = parse(template.trim(), options);
+      console.log(ast)
+
       if (options.optimize !== false) {
           optimize(ast, options);
       }

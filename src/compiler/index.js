@@ -8,11 +8,11 @@ export function compileToFunctions(template) {
     // ast(描述语言本身,还可以描述js,css等) 和 虚拟dom(用对象描述节点,他可以加自己的一些属性啥的,只能描述dom)区别
     let ast = parseHTML(template)
     // 2. 优化这棵树
-
+    // todo
     // 3. 通过ast 重新生成代码
     let code = generate(ast)
     console.log(code)
-    // 4. 将code转换为函数(但是里面的_v,_s啥的不知所云,所以用with)
+    // 4. 将code转换为函数(但是里面的_v,_s啥的所以用with)
     // let render=new Function(code)
     // with语法  with语句用于临时拓展作用域链
     // 将obj添加到作用域链的头部，然后执行函数体内部代码，最后把作用域链恢复到原始状态。

@@ -1,4 +1,4 @@
-/* <div id="a"> hello {{name}} <span>world</span></div>
+/* <div id="app" class='demo'> hello {{name}} <span>world</span></div>
  ast={
      tag:'div',// 标签名称
      type:1, //类型 节点1文本3
@@ -37,7 +37,7 @@ const comment = /^<!\--/
 const conditionalComment = /^<!\[/
 
 
-// <div id="a"> hello {{name}} <span>world</span></div>
+// <div id="app" class='demo'> hello {{name}} <span>world</span></div>
 // 解析完一部分就删除一部分
 // 比如说解析完<div id="a"> 直接就删除 如此循环 直到字符串为空为止
 export default function parseHTML(html) {

@@ -1,7 +1,7 @@
-// 编写 <div id="app" style="color:red" >hello {{name}} <span>world</span></div>
+// 编写 <div id="app" class='demo' >hello {{name}} <span>world</span></div>
 // 期待结果 render (){
 // _c节点 _v文本 _s jsonstringfy
-//  return _c("div",{id:'app',style:{color:'red'}},_v('hello'+_s(name)),_c('span',null,_v('hello')))
+//  return _c("div",{id:'app',class='demo'},_v('hello'+_s(name)),_c('span',null,_v('hello')))
 // }
 const defaultTagRE = /\{\{((?:.|\r?\n)+?)\}\}/g
 function genProps(attrs){
@@ -9,7 +9,7 @@ function genProps(attrs){
     let str=''
     for(let i=0;i<attrs.length;i++){
         let attr=attrs[i];
-        // 样式单独处理
+        // 样式单独处理 fixme
         if(attr.name=='style'){
             let obj={}
             attr.value.split(";").forEach(item=>{ // 样式分割
@@ -18,11 +18,10 @@ function genProps(attrs){
             })
             attr.value=obj
         }
-        // 其他的简单样式 直接写进去
-        // str+=`${attr.name}:${JSON.stringify(attr.value)},` ////JSON.stringify加引号效果
+        // 简单属性 直接写进去
         str+=`${attr.name}:${JSON.stringify(attr.value)},` ////JSON.stringify加引号效果
     }
-    return `{${str.slice(0,-1)}}` // 属性要加上{},去掉最后一个逗号
+    return `{attrs:{${str.slice(0,-1)}}}` // 属性要加上{},去掉最后一个逗号
 }
 
 function  gen(node){
@@ -39,7 +38,7 @@ function  gen(node){
         let tokens=[] // 存放每一段代码
         let lastIndex=defaultTagRE.lastIndex=0// 如果正则为全局模式 需要每次使用前置为0
         let match,index; //每次匹配的结果
-        //
+        // 匹配
         while (match=defaultTagRE.exec(text)){
             index=match.index; //保存匹配到的索引
             if(index>lastIndex){
