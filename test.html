@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="./vue.js"></script>
+<body>
+
+    <div id="app" style="color:red">hello {{name}} <span>world</span></div>
+
+</body>
+<script>
+    const vm=new Vue({
+        el:"#app",
+        data:{
+            name:'测试'
+        },
+        // template:`<div id="app" style="color:red">hello {{name}} <span>world</span></div>`
+
+    })
+</script>
+</html>
