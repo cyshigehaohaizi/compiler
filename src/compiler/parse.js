@@ -163,7 +163,5 @@ export default function parseHTML(html) {
         }
         return false
     }
-
-    console.log(root)
     return root
 }
